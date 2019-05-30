@@ -45,6 +45,7 @@ signature = hmac.digest 'hex'
 Request query params:
 
 `fromSymbols` - Base symbols array delimited by `,`
+
 `toSymbols` - Quote symbols array delimited by `,`
 
 Example request:
