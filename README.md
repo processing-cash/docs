@@ -36,6 +36,34 @@ signature = hmac.digest 'hex'
 - LA
 - AGRO
 
+### Public routes
+
+### GET - Get currency rates
+
+`https://t-api.processing.cash/api/v1/exchange/price`
+
+Request query params:
+
+`fromSymbols` - Base symbols array delimited by `,`
+`toSymbols` - Quote symbols array delimited by `,`
+
+Example request:
+
+`https://t-api.processing.cash/api/v1/exchange/price?fromSymbols=BTC&toSymbols=ETH,LTC,DASH,USD`
+
+Example response:
+
+```json
+{
+  "BTC": {
+    "ETH": 30.68425897,
+    "LTC": 74.57121551,
+    "DASH": 50.78720162,
+    "USD": 8715.61
+  }
+}
+```
+
 ### POST - Generate new address
 
 https://t-api.processing.cash/api/v1/addresses/take
