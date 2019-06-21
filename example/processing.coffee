@@ -37,6 +37,25 @@ class Processing
         return {error: 'Unknown error'}
     address
 
+  callbackHandler: ->
+    { currency, foreignId, tag } = @bodyParams
+
+    key = @request.headers['x-processing-key']
+    signature = @request.headers['x-processing-signature']
+    digest = @createSignature @bodyParams, Config.secret
+    if key isnt Config.key or signature isnt digest
+      return {
+        statusCode: 403
+        body:
+          status: 'error'
+          message: 'authentication_error'
+      }
+
+    processTransaction @bodyParams
+
+    # return 200 response
+    {}
+
 # Initiate singleton
 instance = new Processing
 
